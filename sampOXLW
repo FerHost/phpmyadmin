@@ -1,0 +1,1030 @@
+-- phpMyAdmin SQL Dump
+-- version 4.3.11
+-- http://www.phpmyadmin.net
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 04-06-2016 a las 19:56:28
+-- Versión del servidor: 5.6.24
+-- Versión de PHP: 5.6.8
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de datos: `omegazone`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cantidad_vehiculos`
+--
+
+CREATE TABLE IF NOT EXISTS `cantidad_vehiculos` (
+  `Cantidad` varchar(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `cantidad_vehiculos`
+--
+
+INSERT INTO `cantidad_vehiculos` (`Cantidad`) VALUES
+('100');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `facciones`
+--
+
+CREATE TABLE IF NOT EXISTS `facciones` (
+  `id` int(10) NOT NULL,
+  `fecha` varchar(32) NOT NULL DEFAULT '01/01/2016',
+  `Nombre` varchar(32) NOT NULL,
+  `Integrantes` int(10) NOT NULL DEFAULT '0',
+  `Lider` varchar(32) NOT NULL,
+  `Rango1` varchar(32) NOT NULL,
+  `Rango2` varchar(32) NOT NULL,
+  `Rango3` varchar(32) NOT NULL,
+  `Rango4` varchar(32) NOT NULL,
+  `Rango5` varchar(32) NOT NULL,
+  `Rango6` varchar(32) NOT NULL,
+  `tipobanda` varchar(32) NOT NULL,
+  `territorio` varchar(32) NOT NULL DEFAULT 'Ninguno'
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `facciones`
+--
+
+INSERT INTO `facciones` (`id`, `fecha`, `Nombre`, `Integrantes`, `Lider`, `Rango1`, `Rango2`, `Rango3`, `Rango4`, `Rango5`, `Rango6`, `tipobanda`, `territorio`) VALUES
+(1, '01/01/2016', 'S.A.P.D', 1, 'Gobierno', 'Cadete', 'Oficial', 'Cabo', 'Sargento', 'Teniente', 'Capitan', 'Policia', 'San Andreas');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `info`
+--
+
+CREATE TABLE IF NOT EXISTS `info` (
+  `ID` int(10) NOT NULL,
+  `Item` varchar(30) NOT NULL DEFAULT '0',
+  `Value` int(30) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `info`
+--
+
+INSERT INTO `info` (`ID`, `Item`, `Value`) VALUES
+(1, 'Usuarios', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `log_baneos`
+--
+
+CREATE TABLE IF NOT EXISTS `log_baneos` (
+  `ID` int(10) NOT NULL,
+  `Administrador` varchar(24) NOT NULL,
+  `Baneado` varchar(24) NOT NULL,
+  `Fecha` varchar(10) NOT NULL,
+  `Motivo` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `log_ingresos`
+--
+
+CREATE TABLE IF NOT EXISTS `log_ingresos` (
+  `ID` int(10) unsigned NOT NULL,
+  `Nombre` varchar(32) NOT NULL,
+  `Pais` varchar(32) NOT NULL,
+  `IP` varchar(32) NOT NULL,
+  `Fecha` varchar(32) NOT NULL,
+  `Host` varchar(32) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=48344 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `log_ingresos`
+--
+
+INSERT INTO `log_ingresos` (`ID`, `Nombre`, `Pais`, `IP`, `Fecha`, `Host`) VALUES
+(48342, 'Hahn', 'Unknown', '127.0.0.1', '4/06/2016 12:00:57', 'Unknown'),
+(48343, 'Hahn', 'Unknown', '127.0.0.1', '4/06/2016 12:18:58', 'Unknown');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `log_nombres`
+--
+
+CREATE TABLE IF NOT EXISTS `log_nombres` (
+  `ID` int(10) unsigned NOT NULL,
+  `Viejo_Nombre` varchar(32) NOT NULL,
+  `Nuevo_Nombre` varchar(32) NOT NULL,
+  `Fecha` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `log_propiedades`
+--
+
+CREATE TABLE IF NOT EXISTS `log_propiedades` (
+  `id` int(10) NOT NULL,
+  `Comprador` varchar(32) NOT NULL,
+  `casaid` int(10) NOT NULL,
+  `precio` int(10) NOT NULL,
+  `moneda` int(2) NOT NULL,
+  `fecha` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `log_transacciones`
+--
+
+CREATE TABLE IF NOT EXISTS `log_transacciones` (
+  `ID` int(10) unsigned NOT NULL,
+  `Fecha` varchar(32) NOT NULL,
+  `Enviador` varchar(32) NOT NULL,
+  `Receptor` varchar(32) NOT NULL,
+  `Monto` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `log_vehiculos`
+--
+
+CREATE TABLE IF NOT EXISTS `log_vehiculos` (
+  `id` int(10) NOT NULL,
+  `Comprador` varchar(32) NOT NULL,
+  `vehiculo` varchar(10) NOT NULL,
+  `precio` int(10) NOT NULL,
+  `moneda` int(10) NOT NULL,
+  `fecha` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `log_ventas`
+--
+
+CREATE TABLE IF NOT EXISTS `log_ventas` (
+  `id` int(10) NOT NULL,
+  `Vendedor` varchar(24) NOT NULL,
+  `arma` int(10) NOT NULL DEFAULT '0',
+  `precio` int(10) NOT NULL DEFAULT '0',
+  `comprador` varchar(24) NOT NULL,
+  `item` varchar(10) NOT NULL,
+  `cantidad` int(10) NOT NULL,
+  `fecha` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `prendas`
+--
+
+CREATE TABLE IF NOT EXISTS `prendas` (
+  `ID` int(10) unsigned NOT NULL,
+  `Propietario` varchar(32) NOT NULL,
+  `Objeto` int(10) NOT NULL,
+  `Slot` int(5) NOT NULL,
+  `ObjUsed` int(1) NOT NULL,
+  `fOffsetX` float NOT NULL DEFAULT '0.085',
+  `fOffsetY` float NOT NULL DEFAULT '0.017999',
+  `fOffsetZ` float NOT NULL DEFAULT '0.000999',
+  `fRotX` float NOT NULL DEFAULT '87.2',
+  `fRotY` float NOT NULL DEFAULT '88.1',
+  `fRotZ` float NOT NULL DEFAULT '-7.5',
+  `fScaleX` float NOT NULL DEFAULT '1',
+  `fScaleY` float NOT NULL DEFAULT '1',
+  `fScaleZ` float NOT NULL DEFAULT '1',
+  `ATH` int(1) NOT NULL,
+  `Precio` int(5) NOT NULL DEFAULT '0',
+  `MonedaP` int(5) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `propiedades`
+--
+
+CREATE TABLE IF NOT EXISTS `propiedades` (
+  `id` int(5) unsigned NOT NULL,
+  `propietario` varchar(25) NOT NULL,
+  `interior` int(5) NOT NULL,
+  `precio` int(11) NOT NULL,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL,
+  `a` float NOT NULL,
+  `moneda` varchar(2) NOT NULL,
+  `seguro` varchar(2) NOT NULL,
+  `comprable` int(1) NOT NULL,
+  `A1` int(10) NOT NULL DEFAULT '0',
+  `A2` int(10) NOT NULL DEFAULT '0',
+  `A3` int(10) NOT NULL DEFAULT '0',
+  `A4` int(10) NOT NULL DEFAULT '0',
+  `A5` int(10) NOT NULL DEFAULT '0',
+  `A6` int(10) NOT NULL DEFAULT '0',
+  `A7` int(10) NOT NULL DEFAULT '0',
+  `A8` int(10) NOT NULL DEFAULT '0',
+  `A9` int(10) NOT NULL DEFAULT '0',
+  `A10` int(10) NOT NULL DEFAULT '0',
+  `Crack` int(50) NOT NULL DEFAULT '0',
+  `Medicamentos` int(50) NOT NULL DEFAULT '0',
+  `SeguroA` int(5) NOT NULL DEFAULT '0',
+  `AX` float NOT NULL DEFAULT '0',
+  `AY` float NOT NULL DEFAULT '0',
+  `AZ` float NOT NULL DEFAULT '0',
+  `hinterior` int(10) NOT NULL DEFAULT '0',
+  `Nivel` int(10) NOT NULL DEFAULT '0',
+  `gVW` int(11) NOT NULL,
+  `gX` float NOT NULL,
+  `gY` float NOT NULL,
+  `gZ` float NOT NULL,
+  `gSX` float NOT NULL,
+  `gSY` float NOT NULL,
+  `gSZ` float NOT NULL,
+  `gSA` float NOT NULL,
+  `gG` int(11) NOT NULL,
+  `tipo` int(3) NOT NULL DEFAULT '1',
+  `Direccion` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `registros`
+--
+
+CREATE TABLE IF NOT EXISTS `registros` (
+  `id` int(10) NOT NULL,
+  `Cantidad` int(30) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `registros`
+--
+
+INSERT INTO `registros` (`id`, `Cantidad`) VALUES
+(1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `ID` int(10) NOT NULL,
+  `Username` varchar(30) NOT NULL,
+  `Password` varchar(129) NOT NULL,
+  `posX` float NOT NULL,
+  `posY` float NOT NULL,
+  `posZ` float NOT NULL,
+  `Admin` int(1) NOT NULL DEFAULT '0',
+  `Sexo` varchar(1) NOT NULL,
+  `Edad` int(10) NOT NULL DEFAULT '0',
+  `Skin` varchar(3) NOT NULL,
+  `Vida` float NOT NULL,
+  `Chaleco` float NOT NULL,
+  `Registro` varchar(15) NOT NULL DEFAULT '19/7/2014',
+  `Tutorial` int(5) NOT NULL DEFAULT '0',
+  `Money` int(30) NOT NULL,
+  `Banco` int(30) NOT NULL DEFAULT '0',
+  `Moneda` int(30) NOT NULL DEFAULT '0',
+  `Cargos` varchar(1) NOT NULL DEFAULT '0',
+  `Duty` varchar(1) NOT NULL DEFAULT '0',
+  `SkinTrabajo` varchar(3) NOT NULL DEFAULT '280',
+  `Nivel` varchar(2) NOT NULL DEFAULT '1',
+  `Experiencia` varchar(3) NOT NULL DEFAULT '0',
+  `Agonizando` varchar(1) NOT NULL DEFAULT '0',
+  `GPS` varchar(1) NOT NULL DEFAULT '0',
+  `Seguro1` varchar(1) NOT NULL DEFAULT '0',
+  `Radio` varchar(1) NOT NULL DEFAULT '0',
+  `Numero` varchar(10) NOT NULL DEFAULT '0',
+  `Interior` int(10) NOT NULL DEFAULT '0',
+  `MundoVirtual` int(10) NOT NULL DEFAULT '0',
+  `Materiales` int(10) NOT NULL DEFAULT '0',
+  `Dia` int(11) NOT NULL DEFAULT '0',
+  `Mes` int(11) NOT NULL DEFAULT '0',
+  `Ano` int(11) NOT NULL DEFAULT '0',
+  `Hora` int(11) NOT NULL DEFAULT '0',
+  `Minuto` int(11) NOT NULL DEFAULT '0',
+  `Segundo` int(11) NOT NULL DEFAULT '0',
+  `Sed` int(255) NOT NULL DEFAULT '0',
+  `Trabajo` int(2) NOT NULL DEFAULT '0',
+  `Trabajo2` int(2) NOT NULL DEFAULT '0',
+  `Faccion` varchar(5) NOT NULL DEFAULT '0',
+  `Rango` varchar(10) DEFAULT NULL,
+  `Crack` int(10) NOT NULL DEFAULT '0',
+  `Medicamentos` int(10) NOT NULL DEFAULT '0',
+  `Agenda` varchar(2) NOT NULL DEFAULT '0',
+  `Licencia` varchar(5) NOT NULL DEFAULT '0',
+  `TiempoPD` int(15) NOT NULL DEFAULT '0',
+  `TiempoJail` int(30) NOT NULL DEFAULT '0',
+  `TiempoCarcelM` int(3) NOT NULL DEFAULT '0',
+  `Repuestos` int(3) NOT NULL DEFAULT '0',
+  `hx` float NOT NULL,
+  `hy` float NOT NULL,
+  `hz` float NOT NULL,
+  `Baneado` varchar(2) NOT NULL DEFAULT '0',
+  `IP` varchar(15) NOT NULL,
+  `NMute` int(11) NOT NULL DEFAULT '0',
+  `LastOn` varchar(15) NOT NULL,
+  `changenamefree` int(1) NOT NULL DEFAULT '0',
+  `Online` int(1) NOT NULL DEFAULT '0',
+  `Email` varchar(50) NOT NULL DEFAULT '0',
+  `EMS` int(11) NOT NULL DEFAULT '0',
+  `TiempoCarcelS` int(3) NOT NULL DEFAULT '0',
+  `Changed` int(1) NOT NULL DEFAULT '0',
+  `Multas` int(10) NOT NULL DEFAULT '0',
+  `Stats` int(1) NOT NULL DEFAULT '0',
+  `EnCasa` varchar(10) NOT NULL DEFAULT '0',
+  `EnRopero` varchar(10) NOT NULL DEFAULT '0',
+  `EnGarage` int(10) NOT NULL DEFAULT '0',
+  `VIP` int(2) NOT NULL DEFAULT '0',
+  `FinDia` int(2) NOT NULL DEFAULT '0',
+  `FinMes` int(2) NOT NULL DEFAULT '0',
+  `FinAno` int(4) NOT NULL DEFAULT '0',
+  `hprecio` int(10) NOT NULL DEFAULT '0',
+  `h2precio` int(10) NOT NULL DEFAULT '0',
+  `hmoneda` int(1) NOT NULL DEFAULT '0',
+  `h2moneda` int(1) NOT NULL DEFAULT '0',
+  `CasaID` int(5) NOT NULL DEFAULT '0',
+  `CasaID2` int(5) NOT NULL DEFAULT '0',
+  `WP0` varchar(2) NOT NULL DEFAULT '0',
+  `WP1` varchar(2) NOT NULL DEFAULT '0',
+  `WP2` varchar(2) NOT NULL DEFAULT '0',
+  `WP3` varchar(2) NOT NULL DEFAULT '0',
+  `WP4` varchar(2) NOT NULL DEFAULT '0',
+  `WP5` varchar(2) NOT NULL DEFAULT '0',
+  `WP6` varchar(2) NOT NULL DEFAULT '0',
+  `WP7` varchar(2) NOT NULL DEFAULT '0',
+  `WP8` varchar(2) NOT NULL DEFAULT '0',
+  `WP9` varchar(2) NOT NULL DEFAULT '0',
+  `WP10` varchar(2) NOT NULL DEFAULT '0',
+  `WP11` varchar(2) NOT NULL DEFAULT '0',
+  `WP12` varchar(2) NOT NULL DEFAULT '0',
+  `NivelArmero` varchar(3) NOT NULL DEFAULT '1',
+  `ExpArmero` varchar(3) NOT NULL DEFAULT '0',
+  `NivelPescador` int(3) NOT NULL DEFAULT '1',
+  `ExpPescador` int(3) NOT NULL DEFAULT '0',
+  `NivelPiloto` int(3) NOT NULL DEFAULT '1',
+  `ExpPiloto` int(3) NOT NULL DEFAULT '0',
+  `NivelCamionero` varchar(3) NOT NULL DEFAULT '1',
+  `ExpCamionero` varchar(3) NOT NULL DEFAULT '0',
+  `NivelTransportista` int(3) NOT NULL DEFAULT '1',
+  `ExpTransportista` int(3) NOT NULL DEFAULT '0',
+  `NivelBasurero` int(3) NOT NULL DEFAULT '1',
+  `ExpBasurero` int(3) NOT NULL DEFAULT '0',
+  `NivelLadron` int(3) NOT NULL DEFAULT '1',
+  `ExpLadron` int(3) NOT NULL DEFAULT '0',
+  `OX` float NOT NULL DEFAULT '0',
+  `OY` float NOT NULL DEFAULT '0',
+  `OZ` float NOT NULL DEFAULT '0',
+  `OA` float NOT NULL DEFAULT '0',
+  `VE1` int(20) NOT NULL,
+  `VE2` int(20) NOT NULL,
+  `VE3` int(20) NOT NULL,
+  `VE4` int(20) NOT NULL,
+  `vMoneda` int(5) NOT NULL DEFAULT '0',
+  `Modelo` varchar(3) NOT NULL,
+  `vGas` int(10) NOT NULL DEFAULT '0',
+  `vinterior` int(10) NOT NULL DEFAULT '0',
+  `vvw` int(10) NOT NULL DEFAULT '0',
+  `Color1` int(3) NOT NULL,
+  `Color2` int(3) NOT NULL,
+  `VidaV` float NOT NULL DEFAULT '1000',
+  `vBaul` int(10) NOT NULL DEFAULT '0',
+  `vBaul2` int(10) NOT NULL DEFAULT '0',
+  `vBaul3` int(10) NOT NULL DEFAULT '0',
+  `vBaul4` int(10) NOT NULL DEFAULT '0',
+  `vBaul5` int(10) NOT NULL DEFAULT '0',
+  `vBaul6` int(10) NOT NULL DEFAULT '0',
+  `vBaul7` int(10) NOT NULL DEFAULT '0',
+  `vBaul8` int(10) NOT NULL DEFAULT '0',
+  `PaintJob` int(5) NOT NULL DEFAULT '-1',
+  `1Patente` varchar(32) NOT NULL DEFAULT '0',
+  `1Componentes0` int(10) NOT NULL DEFAULT '0',
+  `1Componentes1` int(10) NOT NULL DEFAULT '0',
+  `1Componentes2` int(10) NOT NULL DEFAULT '0',
+  `1Componentes3` int(10) NOT NULL DEFAULT '0',
+  `1Componentes4` int(10) NOT NULL DEFAULT '0',
+  `1Componentes5` int(10) NOT NULL DEFAULT '0',
+  `1Componentes6` int(10) NOT NULL DEFAULT '0',
+  `1Componentes7` int(10) NOT NULL DEFAULT '0',
+  `1Componentes8` int(10) NOT NULL DEFAULT '0',
+  `1Componentes9` int(10) NOT NULL DEFAULT '0',
+  `1Componentes10` int(10) NOT NULL DEFAULT '0',
+  `1Componentes11` int(10) NOT NULL DEFAULT '0',
+  `1Componentes12` int(10) NOT NULL DEFAULT '0',
+  `1Componentes13` int(10) NOT NULL DEFAULT '0',
+  `Precio` varchar(50) NOT NULL DEFAULT '0',
+  `X` float NOT NULL,
+  `Y` float NOT NULL,
+  `Z` float NOT NULL,
+  `A` float NOT NULL,
+  `Ovw` int(10) NOT NULL DEFAULT '0',
+  `Segurov` varchar(2) NOT NULL DEFAULT '0',
+  `Ointerior` int(10) NOT NULL DEFAULT '0',
+  `OX2` float NOT NULL DEFAULT '0',
+  `OY2` float NOT NULL DEFAULT '0',
+  `OZ2` float NOT NULL DEFAULT '0',
+  `OA2` float NOT NULL DEFAULT '0',
+  `V2E1` int(20) NOT NULL,
+  `V2E2` int(20) NOT NULL,
+  `V2E3` int(20) NOT NULL,
+  `V2E4` int(20) NOT NULL,
+  `v2Moneda` int(5) NOT NULL DEFAULT '0',
+  `Modelo2` int(10) NOT NULL DEFAULT '0',
+  `v2Gas` int(10) NOT NULL DEFAULT '0',
+  `v2interior` int(10) NOT NULL DEFAULT '0',
+  `v2vw` int(10) NOT NULL DEFAULT '0',
+  `2Color1` int(5) NOT NULL DEFAULT '0',
+  `2Color2` int(5) NOT NULL DEFAULT '0',
+  `VidaV2` float NOT NULL DEFAULT '0',
+  `v2Baul` int(5) NOT NULL DEFAULT '0',
+  `v2Baul2` int(5) NOT NULL DEFAULT '0',
+  `v2Baul3` int(5) NOT NULL DEFAULT '0',
+  `v2Baul4` int(5) NOT NULL DEFAULT '0',
+  `v2Baul5` int(10) NOT NULL DEFAULT '0',
+  `v2Baul6` int(10) NOT NULL DEFAULT '0',
+  `v2Baul7` int(10) NOT NULL DEFAULT '0',
+  `v2Baul8` int(10) NOT NULL DEFAULT '0',
+  `PaintJob2` int(5) NOT NULL DEFAULT '-1',
+  `2Patente` varchar(32) NOT NULL DEFAULT '0',
+  `2Componentes0` int(10) NOT NULL DEFAULT '0',
+  `2Componentes1` int(10) NOT NULL DEFAULT '0',
+  `2Componentes2` int(10) NOT NULL DEFAULT '0',
+  `2Componentes3` int(10) NOT NULL DEFAULT '0',
+  `2Componentes4` int(10) NOT NULL DEFAULT '0',
+  `2Componentes5` int(10) NOT NULL DEFAULT '0',
+  `2Componentes6` int(10) NOT NULL DEFAULT '0',
+  `2Componentes7` int(10) NOT NULL DEFAULT '0',
+  `2Componentes8` int(10) NOT NULL DEFAULT '0',
+  `2Componentes9` int(10) NOT NULL DEFAULT '0',
+  `2Componentes10` int(10) NOT NULL DEFAULT '0',
+  `2Componentes11` int(10) NOT NULL DEFAULT '0',
+  `2Componentes12` int(10) NOT NULL DEFAULT '0',
+  `2Componentes13` int(10) NOT NULL DEFAULT '0',
+  `Precio2` int(30) NOT NULL DEFAULT '0',
+  `X2` float NOT NULL DEFAULT '0',
+  `Y2` float NOT NULL DEFAULT '0',
+  `Z2` float NOT NULL DEFAULT '0',
+  `A2` float NOT NULL DEFAULT '0',
+  `Ovw2` int(10) NOT NULL DEFAULT '0',
+  `Segurov2` int(5) NOT NULL DEFAULT '0',
+  `Ointerior2` int(10) NOT NULL DEFAULT '0',
+  `RopaBasu` int(2) NOT NULL DEFAULT '0',
+  `RopaMedi` int(2) NOT NULL DEFAULT '0',
+  `RopaMeca` int(2) DEFAULT '0',
+  `RopaMine` int(2) NOT NULL DEFAULT '0',
+  `Martillo` int(2) NOT NULL DEFAULT '0',
+  `Destornillador` int(2) NOT NULL DEFAULT '0',
+  `Barreta` int(2) NOT NULL DEFAULT '0',
+  `Balde` int(2) NOT NULL DEFAULT '0',
+  `ent_totem` int(10) NOT NULL DEFAULT '0',
+  `totem` varchar(32) DEFAULT NULL,
+  `totems` int(10) NOT NULL DEFAULT '0',
+  `OX3` float NOT NULL DEFAULT '0',
+  `OY3` float NOT NULL DEFAULT '0',
+  `OZ3` float NOT NULL DEFAULT '0',
+  `OA3` float NOT NULL DEFAULT '0',
+  `V3E1` int(20) NOT NULL,
+  `V3E2` int(20) NOT NULL,
+  `V3E3` int(20) NOT NULL,
+  `V3E4` int(20) NOT NULL,
+  `v3Moneda` int(5) NOT NULL DEFAULT '0',
+  `Modelo3` int(10) NOT NULL DEFAULT '0',
+  `v3Gas` int(10) NOT NULL DEFAULT '0',
+  `v3interior` int(10) NOT NULL DEFAULT '0',
+  `v3vw` int(10) NOT NULL DEFAULT '0',
+  `3Color1` int(5) NOT NULL DEFAULT '0',
+  `3Color2` int(5) NOT NULL DEFAULT '0',
+  `VidaV3` float NOT NULL DEFAULT '0',
+  `v3Baul` int(5) NOT NULL DEFAULT '0',
+  `v3Baul2` int(5) NOT NULL DEFAULT '0',
+  `v3Baul3` int(5) NOT NULL DEFAULT '0',
+  `v3Baul4` int(5) NOT NULL DEFAULT '0',
+  `v3Baul5` int(10) NOT NULL DEFAULT '0',
+  `v3Baul6` int(10) NOT NULL DEFAULT '0',
+  `v3Baul7` int(10) NOT NULL DEFAULT '0',
+  `v3Baul8` int(10) NOT NULL DEFAULT '0',
+  `PaintJob3` int(5) NOT NULL DEFAULT '-1',
+  `3Patente` varchar(32) NOT NULL DEFAULT '0',
+  `3Componentes0` int(10) NOT NULL DEFAULT '0',
+  `3Componentes1` int(10) NOT NULL DEFAULT '0',
+  `3Componentes2` int(10) NOT NULL DEFAULT '0',
+  `3Componentes3` int(10) NOT NULL DEFAULT '0',
+  `3Componentes4` int(10) NOT NULL DEFAULT '0',
+  `3Componentes5` int(10) NOT NULL DEFAULT '0',
+  `3Componentes6` int(10) NOT NULL DEFAULT '0',
+  `3Componentes7` int(10) NOT NULL DEFAULT '0',
+  `3Componentes8` int(10) NOT NULL DEFAULT '0',
+  `3Componentes9` int(10) NOT NULL DEFAULT '0',
+  `3Componentes10` int(10) NOT NULL DEFAULT '0',
+  `3Componentes11` int(10) NOT NULL DEFAULT '0',
+  `3Componentes12` int(10) NOT NULL DEFAULT '0',
+  `3Componentes13` int(10) NOT NULL DEFAULT '0',
+  `Precio3` int(30) NOT NULL DEFAULT '0',
+  `X3` float NOT NULL DEFAULT '0',
+  `Y3` float NOT NULL DEFAULT '0',
+  `Z3` float NOT NULL DEFAULT '0',
+  `A3` float NOT NULL DEFAULT '0',
+  `Ovw3` int(10) NOT NULL DEFAULT '0',
+  `Segurov3` int(5) NOT NULL DEFAULT '0',
+  `Ointerior3` int(10) NOT NULL DEFAULT '0',
+  `OX4` float NOT NULL DEFAULT '0',
+  `OY4` float NOT NULL DEFAULT '0',
+  `OZ4` float NOT NULL DEFAULT '0',
+  `OA4` float NOT NULL DEFAULT '0',
+  `V4E1` int(20) NOT NULL,
+  `V4E2` int(20) NOT NULL,
+  `V4E3` int(20) NOT NULL,
+  `V4E4` int(20) NOT NULL,
+  `v4Moneda` int(5) NOT NULL DEFAULT '0',
+  `Modelo4` int(10) NOT NULL DEFAULT '0',
+  `v4Gas` int(10) NOT NULL DEFAULT '0',
+  `v4interior` int(10) NOT NULL DEFAULT '0',
+  `v4vw` int(10) NOT NULL DEFAULT '0',
+  `4Color1` int(5) NOT NULL DEFAULT '0',
+  `4Color2` int(5) NOT NULL DEFAULT '0',
+  `VidaV4` float NOT NULL DEFAULT '0',
+  `v4Baul` int(5) NOT NULL DEFAULT '0',
+  `v4Baul2` int(5) NOT NULL DEFAULT '0',
+  `v4Baul3` int(5) NOT NULL DEFAULT '0',
+  `v4Baul4` int(5) NOT NULL DEFAULT '0',
+  `v4Baul5` int(10) NOT NULL DEFAULT '0',
+  `v4Baul6` int(10) NOT NULL DEFAULT '0',
+  `v4Baul7` int(10) NOT NULL DEFAULT '0',
+  `v4Baul8` int(10) NOT NULL DEFAULT '0',
+  `PaintJob4` int(5) NOT NULL DEFAULT '-1',
+  `4Patente` varchar(32) NOT NULL DEFAULT '0',
+  `4Componentes0` int(10) NOT NULL DEFAULT '0',
+  `4Componentes1` int(10) NOT NULL DEFAULT '0',
+  `4Componentes2` int(10) NOT NULL DEFAULT '0',
+  `4Componentes3` int(10) NOT NULL DEFAULT '0',
+  `4Componentes4` int(10) NOT NULL DEFAULT '0',
+  `4Componentes5` int(10) NOT NULL DEFAULT '0',
+  `4Componentes6` int(10) NOT NULL DEFAULT '0',
+  `4Componentes7` int(10) NOT NULL DEFAULT '0',
+  `4Componentes8` int(10) NOT NULL DEFAULT '0',
+  `4Componentes9` int(10) NOT NULL DEFAULT '0',
+  `4Componentes10` int(10) NOT NULL DEFAULT '0',
+  `4Componentes11` int(10) NOT NULL DEFAULT '0',
+  `4Componentes12` int(10) NOT NULL DEFAULT '0',
+  `4Componentes13` int(10) NOT NULL DEFAULT '0',
+  `Precio4` int(30) NOT NULL DEFAULT '0',
+  `X4` float NOT NULL DEFAULT '0',
+  `Y4` float NOT NULL DEFAULT '0',
+  `Z4` float NOT NULL DEFAULT '0',
+  `A4` float NOT NULL DEFAULT '0',
+  `Ovw4` int(10) NOT NULL DEFAULT '0',
+  `Segurov4` int(5) NOT NULL DEFAULT '0',
+  `Ointerior4` int(10) NOT NULL DEFAULT '0',
+  `razon` varchar(32) NOT NULL DEFAULT 'Ninguno',
+  `NivelMinero` int(3) NOT NULL DEFAULT '1',
+  `ExpMinero` int(3) NOT NULL DEFAULT '0',
+  `Regalo` int(11) NOT NULL DEFAULT '0',
+  `arrestado` int(10) NOT NULL DEFAULT '0',
+  `horasjugadas` int(10) NOT NULL DEFAULT '0',
+  `TipoCarcel` varchar(3) NOT NULL DEFAULT '0',
+  `SocioHP` varchar(3) NOT NULL DEFAULT '0',
+  `TipoRegistro` int(5) NOT NULL DEFAULT '0',
+  `Hambre` int(255) NOT NULL,
+  `Patines` int(2) NOT NULL,
+  `TieneEmisora` int(2) NOT NULL DEFAULT '0',
+  `Orina` int(255) NOT NULL,
+  `TarjetaBOD` int(255) NOT NULL,
+  `NombreEmisora` varchar(90) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`ID`, `Username`, `Password`, `posX`, `posY`, `posZ`, `Admin`, `Sexo`, `Edad`, `Skin`, `Vida`, `Chaleco`, `Registro`, `Tutorial`, `Money`, `Banco`, `Moneda`, `Cargos`, `Duty`, `SkinTrabajo`, `Nivel`, `Experiencia`, `Agonizando`, `GPS`, `Seguro1`, `Radio`, `Numero`, `Interior`, `MundoVirtual`, `Materiales`, `Dia`, `Mes`, `Ano`, `Hora`, `Minuto`, `Segundo`, `Sed`, `Trabajo`, `Trabajo2`, `Faccion`, `Rango`, `Crack`, `Medicamentos`, `Agenda`, `Licencia`, `TiempoPD`, `TiempoJail`, `TiempoCarcelM`, `Repuestos`, `hx`, `hy`, `hz`, `Baneado`, `IP`, `NMute`, `LastOn`, `changenamefree`, `Online`, `Email`, `EMS`, `TiempoCarcelS`, `Changed`, `Multas`, `Stats`, `EnCasa`, `EnRopero`, `EnGarage`, `VIP`, `FinDia`, `FinMes`, `FinAno`, `hprecio`, `h2precio`, `hmoneda`, `h2moneda`, `CasaID`, `CasaID2`, `WP0`, `WP1`, `WP2`, `WP3`, `WP4`, `WP5`, `WP6`, `WP7`, `WP8`, `WP9`, `WP10`, `WP11`, `WP12`, `NivelArmero`, `ExpArmero`, `NivelPescador`, `ExpPescador`, `NivelPiloto`, `ExpPiloto`, `NivelCamionero`, `ExpCamionero`, `NivelTransportista`, `ExpTransportista`, `NivelBasurero`, `ExpBasurero`, `NivelLadron`, `ExpLadron`, `OX`, `OY`, `OZ`, `OA`, `VE1`, `VE2`, `VE3`, `VE4`, `vMoneda`, `Modelo`, `vGas`, `vinterior`, `vvw`, `Color1`, `Color2`, `VidaV`, `vBaul`, `vBaul2`, `vBaul3`, `vBaul4`, `vBaul5`, `vBaul6`, `vBaul7`, `vBaul8`, `PaintJob`, `1Patente`, `1Componentes0`, `1Componentes1`, `1Componentes2`, `1Componentes3`, `1Componentes4`, `1Componentes5`, `1Componentes6`, `1Componentes7`, `1Componentes8`, `1Componentes9`, `1Componentes10`, `1Componentes11`, `1Componentes12`, `1Componentes13`, `Precio`, `X`, `Y`, `Z`, `A`, `Ovw`, `Segurov`, `Ointerior`, `OX2`, `OY2`, `OZ2`, `OA2`, `V2E1`, `V2E2`, `V2E3`, `V2E4`, `v2Moneda`, `Modelo2`, `v2Gas`, `v2interior`, `v2vw`, `2Color1`, `2Color2`, `VidaV2`, `v2Baul`, `v2Baul2`, `v2Baul3`, `v2Baul4`, `v2Baul5`, `v2Baul6`, `v2Baul7`, `v2Baul8`, `PaintJob2`, `2Patente`, `2Componentes0`, `2Componentes1`, `2Componentes2`, `2Componentes3`, `2Componentes4`, `2Componentes5`, `2Componentes6`, `2Componentes7`, `2Componentes8`, `2Componentes9`, `2Componentes10`, `2Componentes11`, `2Componentes12`, `2Componentes13`, `Precio2`, `X2`, `Y2`, `Z2`, `A2`, `Ovw2`, `Segurov2`, `Ointerior2`, `RopaBasu`, `RopaMedi`, `RopaMeca`, `RopaMine`, `Martillo`, `Destornillador`, `Barreta`, `Balde`, `ent_totem`, `totem`, `totems`, `OX3`, `OY3`, `OZ3`, `OA3`, `V3E1`, `V3E2`, `V3E3`, `V3E4`, `v3Moneda`, `Modelo3`, `v3Gas`, `v3interior`, `v3vw`, `3Color1`, `3Color2`, `VidaV3`, `v3Baul`, `v3Baul2`, `v3Baul3`, `v3Baul4`, `v3Baul5`, `v3Baul6`, `v3Baul7`, `v3Baul8`, `PaintJob3`, `3Patente`, `3Componentes0`, `3Componentes1`, `3Componentes2`, `3Componentes3`, `3Componentes4`, `3Componentes5`, `3Componentes6`, `3Componentes7`, `3Componentes8`, `3Componentes9`, `3Componentes10`, `3Componentes11`, `3Componentes12`, `3Componentes13`, `Precio3`, `X3`, `Y3`, `Z3`, `A3`, `Ovw3`, `Segurov3`, `Ointerior3`, `OX4`, `OY4`, `OZ4`, `OA4`, `V4E1`, `V4E2`, `V4E3`, `V4E4`, `v4Moneda`, `Modelo4`, `v4Gas`, `v4interior`, `v4vw`, `4Color1`, `4Color2`, `VidaV4`, `v4Baul`, `v4Baul2`, `v4Baul3`, `v4Baul4`, `v4Baul5`, `v4Baul6`, `v4Baul7`, `v4Baul8`, `PaintJob4`, `4Patente`, `4Componentes0`, `4Componentes1`, `4Componentes2`, `4Componentes3`, `4Componentes4`, `4Componentes5`, `4Componentes6`, `4Componentes7`, `4Componentes8`, `4Componentes9`, `4Componentes10`, `4Componentes11`, `4Componentes12`, `4Componentes13`, `Precio4`, `X4`, `Y4`, `Z4`, `A4`, `Ovw4`, `Segurov4`, `Ointerior4`, `razon`, `NivelMinero`, `ExpMinero`, `Regalo`, `arrestado`, `horasjugadas`, `TipoCarcel`, `SocioHP`, `TipoRegistro`, `Hambre`, `Patines`, `TieneEmisora`, `Orina`,`TarjetaBOD`,  `NombreEmisora`) VALUES
+(1, 'Kennedy', '25483587', 437.579, -1520.52, 31.4541, 31777, '1', 25, '250', 98, 100, '22/10/2016', 0, 384338, 3251559, 242, '0', '1', '287', '5', '24', '0', '1', '1', '1', '500001', 0, 0, 116354, 2016, 6, 4, 12, 48, 38, 100, 2, 3, '1', '7', 1555, 1488, '1', '1', 3585509, 0, 0, 0, 1094.01, -807.124, 107.482, '0', '127.0.0.1', 0, '4/6/2016', 0, 0, 'oOMrHahnOo@hotmail.com', 1, 0, 0, 0, 1, '0', '0', 0, 1, 12, 3, 2016, 1000, 100000, 1, 1, 73, 200, '0', '0', '0', '0', '0', '30', '0', '0', '0', '0', '0', '0', '0', '8', '9', 1, 0, 1, 0, '1', '5', 1, 1, 6, 1, 3, 7, 1802.19, -1299.98, 13.3828, 358.678, 0, 0, 0, 0, 1, '468', 83, 0, 0, 222, 222, 787.514, 0, 0, 0, 0, 0, 0, 0, 0, -1, 'CWHG 819', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0', 250.594, 1043.38, 23.6823, 33.0339, 0, '0', 0, 613.981, -3147.41, 6.41722, 184.701, 0, 0, 0, 0, 1, 513, 94, 0, 0, 126, 126, 1000, 0, 0, 0, 0, 0, 0, 0, 0, -1, 'GMAA 704', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 611.742, -3141.92, 6.4049, 357.602, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 0, NULL, 143, 594.25, -3195.76, 5.86, 192.106, 0, 0, 0, 0, 1, 593, 97, 0, 0, 88, 226, 1000, 0, 0, 0, 0, 0, 0, 0, 0, -1, 'IMMB 522', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 594.244, -3195.55, 6.30014, 257.088, 0, 0, 0, 236.304, -1828.57, 3.84281, 223.662, 0, 0, 0, 0, 1, 432, 100, 0, 0, 6, 6, 1000, 0, 0, 0, 0, 0, 0, 0, 0, -1, 'IIKG 733', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1762.69, -2108.29, 13.4463, 1.07011, 0, 1, 0, 'cheater', 1, 1, 0, 2, 1573, '3', '0', 0, 13, 1, 1, 0,0,'VERDE');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `vehicles`
+--
+
+CREATE TABLE IF NOT EXISTS `vehicles` (
+  `id` int(5) NOT NULL,
+  `propietario` varchar(25) NOT NULL,
+  `modelo` int(5) NOT NULL,
+  `precio` int(11) NOT NULL,
+  `x` float NOT NULL,
+  `y` float NOT NULL,
+  `z` float NOT NULL,
+  `a` float NOT NULL,
+  `color1` varchar(3) NOT NULL,
+  `color2` varchar(3) NOT NULL,
+  `comprable` varchar(1) NOT NULL,
+  `moneda` int(5) NOT NULL DEFAULT '0',
+  `faccion` int(10) NOT NULL DEFAULT '0',
+  `trabajo` int(10) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM AUTO_INCREMENT=186 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `vehicles`
+--
+
+INSERT INTO `vehicles` (`id`, `propietario`, `modelo`, `precio`, `x`, `y`, `z`, `a`, `color1`, `color2`, `comprable`, `moneda`, `faccion`, `trabajo`) VALUES
+(1, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(2, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(3, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(4, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(5, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(6, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(7, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(8, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(9, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(10, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(11, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(12, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(13, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(14, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(15, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(16, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(17, 'Tren', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(18, 'Bus', 0, 0, 0, 0, 0, 0, '0', '0', '0', 0, 0, 0),
+(19, 'Gobierno', 596, 0, 1604.21, -1607.02, 13.1746, 87.4326, '0', '1', '0', 0, 0, 0),
+(20, 'Gobierno', 596, 0, 1603.85, -1617.49, 13.129, 85.9502, '0', '1', '0', 0, 0, 0),
+(21, 'Gobierno', 596, 0, 1603.49, -1623.18, 13.129, 87.0255, '0', '1', '0', 0, 0, 0),
+(22, 'Gobierno', 596, 0, 1603.43, -1628.43, 13.2271, 87, '0', '1', '0', 0, 0, 0),
+(23, 'Gobierno', 596, 0, 1570, -1606.25, 13.028, 179.513, '0', '1', '0', 0, 0, 0),
+(24, 'Gobierno', 596, 0, 1582.3, -1606.19, 13.028, 179.513, '0', '1', '0', 0, 0, 0),
+(25, 'Gobierno', 596, 0, 1563.95, -1606.42, 13.028, 179.513, '0', '1', '0', 0, 0, 0),
+(26, 'Gobierno', 596, 0, 1576.23, -1606.29, 13.028, 179.513, '0', '1', '0', 0, 0, 0),
+(27, 'Gobierno', 596, 0, 1603.99, -1612.1, 13.1746, 87.4326, '0', '1', '0', 0, 0, 0),
+(28, 'Gobierno', 596, 0, 1535.83, -1668.24, 13.0436, 359.555, '0', '1', '0', 0, 0, 0),
+(29, 'Gobierno', 596, 0, 1535.75, -1678.29, 13.0437, 359.551, '0', '1', '0', 0, 0, 0),
+(30, 'Gobierno', 416, 0, 1616.56, 1830.91, 10.9195, 178.945, '1', '3', '0', 0, 0, 0),
+(31, 'Gobierno', 416, 0, 1178.3, -1338.5, 14.2, 270, '1', '3', '0', 0, 0, 0),
+(32, 'Gobierno', 416, 0, 1179.65, -1308.65, 13.897, 268.682, '1', '3', '0', 0, 0, 0),
+(33, 'Gobierno', 416, 0, 1192.11, -1347.71, 13.4992, 180.55, '1', '3', '0', 0, 0, 0),
+(34, 'Gobierno', 416, 0, 1209.44, -1348.43, 13.5497, 0.476262, '1', '3', '0', 0, 0, 0),
+(35, 'Gobierno', 416, 0, 1209.24, -1318.81, 13.548, 0.4484, '1', '3', '0', 0, 0, 0),
+(36, 'Gobierno', 416, 0, 2032.72, -1447.62, 17.2888, 88.6918, '1', '3', '0', 0, 0, 0),
+(37, 'Gobierno', 416, 0, 2000.81, -1409.93, 17.1158, 179.339, '1', '3', '0', 0, 0, 0),
+(38, 'Gobierno', 416, 0, 1601.15, 1849.37, 10.9196, 178.724, '1', '3', '0', 0, 0, 0),
+(39, 'Gobierno', 416, 0, 1611.12, 1839.96, 10.9192, 359.882, '1', '3', '0', 0, 0, 0),
+(40, 'Gobierno', 416, 0, 1594.38, 1839.87, 10.9694, 359.98, '1', '3', '0', 0, 0, 0),
+(41, 'Gobierno', 416, 0, -2693.72, 624.903, 14.5523, 124.597, '1', '3', '0', 0, 0, 0),
+(42, 'Gobierno', 416, 0, -2701.97, 611.621, 14.5533, 163.926, '1', '3', '0', 0, 0, 0),
+(43, 'Gobierno', 416, 0, -2698.83, 592.078, 14.5525, 211.119, '1', '3', '0', 0, 0, 0),
+(44, 'Gobierno', 416, 0, -2676.72, 630.13, 14.6021, 87.9904, '1', '3', '0', 0, 0, 0),
+(45, 'Gobierno', 416, 0, -2648.34, 583.903, 14.6026, 270.434, '1', '3', '0', 0, 0, 0),
+(46, 'Gobierno', 532, 0, -373.803, -1534.98, 22.4199, 287.827, '1', '1', '0', 0, 0, 0),
+(47, 'Gobierno', 532, 0, -372.074, -1546.07, 22.3238, 277.034, '1', '1', '0', 0, 0, 0),
+(48, 'Gobierno', 532, 0, -387.014, -1496.41, 25.9259, 275.834, '1', '1', '0', 0, 0, 0),
+(49, 'Gobierno', 532, 0, -383.597, -1508.68, 24.7948, 292.234, '1', '1', '0', 0, 0, 0),
+(50, 'Gobierno', 532, 0, -378.054, -1522.55, 23.2702, 291.41, '1', '1', '0', 0, 0, 0),
+(51, 'Gobierno', 598, 0, 2277.83, 2442.71, 10.5653, 0.539601, '0', '1', '0', 0, 0, 0),
+(52, 'Gobierno', 598, 0, 2269.05, 2442.94, 10.5658, 0.734632, '0', '1', '0', 0, 0, 0),
+(53, 'Gobierno', 598, 0, 2256.36, 2442.86, 10.5666, 359.091, '0', '1', '0', 0, 0, 0),
+(54, 'Gobierno', 598, 0, 2260.61, 2478.26, 10.5673, 177.463, '0', '1', '0', 0, 0, 0),
+(55, 'Gobierno', 598, 0, 2273.19, 2478.21, 10.565, 180.937, '0', '1', '0', 0, 0, 0),
+(56, 'Gobierno', 598, 0, 2282.35, 2478.35, 10.5645, 179.952, '0', '1', '0', 0, 0, 0),
+(57, 'Gobierno', 598, 0, 2273.54, 2460.66, 10.5684, 181.299, '0', '1', '0', 0, 0, 0),
+(58, 'Gobierno', 597, 0, -1634.72, 650.963, 6.95528, 2.03608, '0', '1', '0', 0, 1, 0),
+(59, 'Gobierno', 597, 0, -1628.61, 651.29, 6.96142, 0, '0', '1', '0', 0, 1, 0),
+(60, 'Gobierno', 597, 0, -1622.04, 651.358, 6.97341, 0, '0', '1', '0', 0, 1, 0),
+(61, 'Gobierno', 597, 0, -1615.67, 651.832, 6.91138, 0, '0', '1', '0', 0, 1, 0),
+(62, 'Gobierno', 597, 0, -1609.34, 650.495, 6.97994, 0, '0', '1', '0', 0, 1, 0),
+(63, 'Gobierno', 597, 0, -1604.17, 651.536, 6.98966, 0, '0', '1', '0', 0, 1, 0),
+(64, 'Gobierno', 420, 0, 1803.73, -1904.79, 13.1791, 91.2167, '6', '6', '0', 0, 0, 0),
+(65, 'Gobierno', 420, 0, 1804, -1912.51, 13.176, 92.5541, '6', '6', '0', 0, 0, 0),
+(66, 'Gobierno', 420, 0, 1804.4, -1921.97, 13.1708, 94.8712, '6', '6', '0', 0, 0, 0),
+(67, 'Gobierno', 420, 0, 1794.89, -1932.77, 13.1659, 0, '6', '6', '0', 0, 0, 0),
+(68, 'Gobierno', 420, 0, 1787.06, -1932.7, 13.1649, 1.4882, '6', '6', '0', 0, 0, 0),
+(69, 'Gobierno', 420, 0, 1775.58, -1913.91, 13.1637, 180.1, '6', '6', '0', 0, 0, 0),
+(70, 'Gobierno', 509, 0, 1703.04, -1876.09, 13.0807, 270.348, '1', '1', '0', 0, 0, 0),
+(71, 'Gobierno', 509, 0, 1703.31, -1879.1, 13.0807, 269.464, '2', '1', '0', 0, 0, 0),
+(72, 'Gobierno', 509, 0, 1703.09, -1881.77, 13.0807, 269.007, '3', '1', '0', 0, 0, 0),
+(73, 'Gobierno', 509, 0, 1703.16, -1884.97, 13.0807, 271.961, '4', '1', '0', 0, 0, 0),
+(74, 'Gobierno', 509, 0, 1710.91, -1875.39, 13.0807, 178.176, '5', '1', '0', 0, 0, 0),
+(75, 'Gobierno', 509, 0, 1718.93, -1875.06, 13.0807, 176.381, '6', '1', '0', 0, 0, 0),
+(76, 'Gobierno', 509, 0, 1727.03, -1875.78, 13.0807, 89.5347, '7', '1', '0', 0, 0, 0),
+(77, 'Gobierno', 509, 0, 1727.05, -1878.48, 13.0807, 88.3724, '8', '1', '0', 0, 0, 0),
+(78, 'Gobierno', 509, 0, 1727.32, -1881.84, 13.0807, 87.3723, '9', '1', '0', 0, 0, 0),
+(79, 'Gobierno', 509, 0, 1726.99, -1884.81, 13.0807, 90.4685, '10', '1', '0', 0, 0, 0),
+(80, 'Gobierno', 456, 0, -1610.98, 92.0841, 3.76232, 224.869, '1', '1', '0', 0, 0, 0),
+(81, 'Gobierno', 456, 0, -1596.6, 106.977, 3.75996, 227.321, '1', '1', '0', 0, 0, 0),
+(82, 'Gobierno', 456, 0, -1569.15, 134.842, 3.76286, 222.82, '1', '1', '0', 0, 0, 0),
+(83, 'Gobierno', 456, 0, -1589.2, 114.527, 3.75991, 225.743, '1', '1', '0', 0, 0, 0),
+(84, 'Gobierno', 456, 0, -1575.13, 128.513, 3.76237, 224.698, '1', '1', '0', 0, 0, 0),
+(85, 'Gobierno', 456, 0, -1756, -168.843, 3.7296, 23.5515, '1', '1', '0', 0, 0, 0),
+(86, 'Gobierno', 456, 0, -1624.5, 78.0176, 3.72969, 226.847, '1', '1', '0', 0, 0, 0),
+(87, 'Gobierno', 456, 0, -1738.25, -160.199, 3.72397, 27.7106, '1', '1', '0', 0, 0, 0),
+(88, 'Gobierno', 456, 0, -1722.04, -150.78, 3.72947, 27.9671, '1', '1', '0', 0, 0, 0),
+(89, 'Gobierno', 498, 0, -1604.97, 100.193, 3.52903, 223.577, '1', '1', '0', 0, 0, 0),
+(90, 'Gobierno', 498, 0, -1747.31, -167.437, 3.62394, 26.2029, '1', '1', '0', 0, 0, 0),
+(91, 'Gobierno', 498, 0, -1619.41, 85.3535, 3.64475, 227.137, '1', '1', '0', 0, 0, 0),
+(92, 'Gobierno', 498, 0, -1583.27, 122.162, 3.5391, 223.746, '1', '1', '0', 0, 0, 0),
+(93, 'Gobierno', 498, 0, -1728.35, -157.114, 3.62526, 27.4225, '1', '1', '0', 0, 0, 0),
+(94, 'Gobierno', 609, 0, -1657.92, 41.6746, 3.62129, 223.094, '0', '0', '0', 0, 0, 0),
+(95, 'Gobierno', 609, 0, -1650.75, 48.5277, 3.62627, 224.525, '0', '0', '0', 0, 0, 0),
+(96, 'Gobierno', 609, 0, -1636.34, 63.6219, 3.62438, 226.384, '0', '0', '0', 0, 0, 0),
+(97, 'Gobierno', 609, 0, -1642.93, 56.4085, 3.62169, 224.717, '0', '0', '0', 0, 0, 0),
+(98, 'Gobierno', 609, 0, -1616.34, 43.767, 3.62439, 45.3192, '0', '0', '0', 0, 0, 0),
+(99, 'Gobierno', 609, 0, -1623.14, 36.8284, 3.62389, 44.374, '0', '0', '0', 0, 0, 0),
+(100, 'Gobierno', 609, 0, -1631.32, 28.6976, 3.62297, 45.1211, '0', '0', '0', 0, 0, 0),
+(101, 'Gobierno', 609, 0, -1638.38, 21.5687, 3.62106, 45.3911, '0', '0', '0', 0, 0, 0),
+(102, 'Gobierno', 523, 0, 1570.59, -1709.75, 5.4615, 2.0359, '1', '1', '0', 0, 0, 0),
+(103, 'Gobierno', 523, 0, 1574.34, -1709.23, 5.4581, 358.051, '1', '1', '0', 0, 0, 0),
+(104, 'Gobierno', 523, 0, 1578.79, -1709.33, 5.4587, 2.4554, '1', '1', '0', 0, 0, 0),
+(105, 'Gobierno', 523, 0, 1583.58, -1709.6, 5.4615, 0.1382, '1', '1', '0', 0, 0, 0),
+(106, 'Gobierno', 523, 0, 1587.66, -1709.85, 5.4616, 358.432, '1', '1', '0', 0, 0, 0),
+(107, 'Gobierno', 601, 0, 1530.55, -1646.76, 5.6494, 181.887, '1', '1', '0', 0, 0, 0),
+(108, 'Gobierno', 601, 0, 1538.79, -1646.99, 5.6493, 181.301, '1', '1', '0', 0, 0, 0),
+(109, 'Gobierno', 528, 0, 1544.64, -1612.51, 13.3795, 268.785, '1', '1', '0', 0, 0, 0),
+(110, 'Gobierno', 528, 0, 1545.13, -1605.26, 13.4281, 269.528, '1', '1', '0', 0, 0, 0),
+(111, 'Gobierno', 497, 0, -1679.61, 705.844, 30.779, 89.5481, '0', '1', '0', 0, 0, 0),
+(112, 'Gobierno', 411, 20, -1959.73, 269.813, 35.2072, 42.6121, '64', '1', '1', 1, 0, 0),
+(113, 'Gobierno', 415, 15, 1471.98, -1773.74, 13.6562, 322.616, '40', '1', '1', 1, 0, 0),
+(114, 'Gobierno', 451, 15, 1458.65, -1774.39, 13.5936, 13.7521, '125', '125', '1', 1, 0, 0),
+(115, 'Gobierno', 604, 3000, 1670.37, -1886.22, 13.2884, 57.7363, '18', '25', '1', 0, 0, 0),
+(116, 'Gobierno', 542, 4000, 1631.92, -1900.45, 13.2968, 270.792, '123', '49', '1', 0, 0, 0),
+(117, 'Gobierno', 404, 5000, 1668.06, -1899.14, 13.2818, 41.4088, '115', '117', '1', 0, 0, 0),
+(118, 'Gobierno', 561, 70000, 1501.68, -1772.28, 13.9387, 43.3255, '8', '17', '1', 0, 0, 0),
+(119, 'Gobierno', 479, 3300, 1669.17, -1892.31, 13.342, 51.0409, '101', '78', '1', 0, 0, 0),
+(120, 'Gobierno', 500, 45000, 1503.09, -1747.13, 13.6621, 359.295, '3', '1', '1', 0, 0, 0),
+(121, 'Gobierno', 589, 42000, 1426.44, -1802.21, 13.5956, 224.17, '31', '31', '1', 0, 0, 0),
+(122, 'Gobierno', 602, 38000, 1501.29, -1774.12, 19.3229, 75.3057, '70', '1', '1', 0, 0, 0),
+(123, 'Gobierno', 603, 45000, 1456.81, -1794.69, 13.7812, 220.783, '58', '1', '1', 0, 0, 0),
+(124, 'Gobierno', 506, 185000, 1457.95, -1779.3, 19.1696, 1.76125, '1', '1', '1', 0, 0, 0),
+(125, 'Gobierno', 565, 60000, 1425.27, -1808.91, 13.5666, 240.479, '42', '42', '1', 0, 0, 0),
+(126, 'Gobierno', 445, 7000, 1631.71, -1909.92, 13.426, 272.908, '66', '97', '1', 0, 0, 0),
+(127, 'Gobierno', 478, 8000, -1992.02, 250.674, 35.1672, 83.9691, '66', '1', '1', 0, 0, 0),
+(128, 'Gobierno', 489, 70000, -1991, 256.413, 35.3156, 85.6616, '112', '120', '1', 0, 0, 0),
+(129, 'Gobierno', 579, 75000, 1483.47, -1746.47, 13.4818, 359.088, '53', '53', '1', 0, 0, 0),
+(130, 'Gobierno', 560, 75000, 523.629, -1290.79, 16.9475, 1.31224, '125', '125', '1', 0, 0, 0),
+(131, 'Gobierno', 551, 10000, 519.455, -1290.61, 17.0424, 358.732, '120', '120', '1', 0, 0, 0),
+(132, 'Gobierno', 587, 80000, 527.897, -1290.87, 16.97, 359.291, '3', '3', '1', 0, 0, 0),
+(133, 'Gobierno', 566, 25000, 532.166, -1290.74, 17.0228, 0, '60', '60', '1', 0, 0, 0),
+(134, 'Gobierno', 533, 20000, 538.966, -1290.96, 16.9513, 2.1154, '62', '62', '1', 0, 0, 0),
+(135, 'Gobierno', 496, 22500, 548.238, -1291.49, 16.9644, 4.19405, '25', '25', '1', 0, 0, 0),
+(136, 'Gobierno', 412, 19000, 555.341, -1290.13, 17.0833, 0.074019, '6', '6', '1', 0, 0, 0),
+(137, 'Gobierno', 463, 55000, 2137.76, -1139.8, 24.9366, 119.298, '125', '125', '1', 0, 0, 0),
+(138, 'Gobierno', 475, 42000, 2135.88, -1125.79, 25.2924, 83.1302, '30', '96', '1', 0, 0, 0),
+(139, 'Gobierno', 545, 33000, 2136.5, -1131.19, 25.4853, 108.837, '66', '66', '1', 0, 0, 0),
+(140, 'Gobierno', 491, 32000, 2135.85, -1135.86, 25.4412, 106.868, '25', '25', '1', 0, 0, 0),
+(141, 'Gobierno', 567, 70000, 2119.63, -1124.74, 25.2432, 303.711, '93', '64', '1', 0, 0, 0),
+(142, 'Gobierno', 534, 60000, 2119.74, -1131.79, 25.0424, 302.697, '37', '37', '1', 0, 0, 0),
+(143, 'Gobierno', 535, 35000, 2119.04, -1139.21, 24.7991, 306.113, '3', '1', '1', 0, 0, 0),
+(144, 'Gobierno', 554, 42000, 1477.53, -1746.75, 13.6335, 1.2896, '15', '32', '1', 0, 0, 0),
+(145, 'Gobierno', 400, 70000, 1472.29, -1746.28, 13.6392, 359.982, '123', '1', '1', 0, 0, 0),
+(146, 'Gobierno', 414, 90000, 1460.06, -1746.98, 13.6406, 359.183, '28', '1', '1', 0, 0, 0),
+(147, 'Gobierno', 482, 120000, 1508.46, -1747.09, 13.6681, 359.023, '37', '37', '1', 0, 0, 0),
+(148, 'Gobierno', 480, 225000, -1957.33, 303.683, 35.2432, 133.499, '12', '12', '1', 0, 0, 0),
+(149, 'Gobierno', 578, 230000, -1990.71, 243.865, 35.7954, 84.9635, '1', '1', '1', 0, 0, 0),
+(150, 'Gobierno', 477, 250000, -1960.17, 257.467, 35.2273, 43.2015, '121', '1', '1', 0, 0, 0),
+(151, 'Gobierno', 409, 1000000, 1467.11, -1747.87, 13.3492, 0.3858, '1', '1', '1', 0, 0, 0),
+(152, 'Gobierno', 408, 0, -126.498, -1501.46, 4.21421, 136.448, '1', '1', '0', 0, 0, 6),
+(153, 'Gobierno', 408, 0, -120.156, -1508.04, 4.13295, 136.905, '1', '1', '0', 0, 0, 6),
+(154, 'Gobierno', 408, 0, -111.604, -1587.82, 3.18897, 122.793, '1', '1', '0', 0, 0, 6),
+(155, 'Gobierno', 408, 0, -109.125, -1592.32, 3.10105, 121.934, '1', '1', '0', 0, 0, 6),
+(156, 'Gobierno', 408, 0, -105.97, -1597.38, 3.09272, 123.696, '1', '1', '0', 0, 0, 6),
+(157, 'Gobierno', 408, 0, -102.576, -1601.98, 3.09469, 122.508, '1', '1', '0', 0, 0, 6),
+(158, 'Gobierno', 408, 0, -114.73, -1613.18, 3.19812, 16.9179, '1', '1', '0', 0, 0, 6),
+(159, 'Gobierno', 408, 0, -120.712, -1613.97, 3.84595, 13.2772, '1', '1', '0', 0, 0, 6),
+(160, 'Gobierno', 408, 0, -186.688, -1555.44, 7.297, 229.635, '1', '1', '0', 0, 0, 6),
+(161, 'Gobierno', 408, 0, -189.85, -1560.93, 7.2426, 227.564, '1', '1', '0', 0, 0, 6),
+(162, 'Gobierno', 453, 0, 2822.07, -2624.44, -0.0876, 89.6143, '1', '1', '0', 0, 0, 10),
+(163, 'Gobierno', 453, 0, 2821.58, -2618.06, -0.2381, 82.3052, '1', '1', '0', 0, 0, 10),
+(164, 'Gobierno', 453, 0, 2822.26, -2611.5, -0.7854, 91.6937, '1', '1', '0', 0, 0, 10),
+(165, 'Gobierno', 453, 0, 2821.52, -2604.74, -0.1236, 87.5986, '1', '1', '0', 0, 0, 10),
+(166, 'Gobierno', 453, 0, 2821.52, -2596.74, -0.3082, 90.4083, '1', '1', '0', 0, 0, 10),
+(167, 'Gobierno', 453, 0, 2822.91, -2584.06, -0.3235, 87.4044, '1', '1', '0', 0, 0, 10),
+(168, 'Gobierno', 453, 0, 2839.35, -2625.99, 0.2129, 272.277, '1', '1', '0', 0, 0, 10),
+(169, 'Gobierno', 453, 0, 2839.33, -2617.7, -0.6352, 273.978, '1', '1', '0', 0, 0, 10),
+(170, 'Gobierno', 453, 0, 2839.43, -2608.04, 0.1093, 265.808, '1', '1', '0', 0, 0, 10),
+(171, 'Gobierno', 453, 0, 2840.28, -2598.57, 0.1278, 270.083, '1', '1', '0', 0, 0, 10),
+(172, 'Gobierno', 453, 0, 2838.01, -2586.62, -0.7477, 273.957, '1', '1', '0', 0, 0, 10),
+(173, 'Gobierno', 453, 0, 2838.26, -2576.27, -0.7139, 274.884, '1', '1', '0', 0, 0, 10),
+(174, 'Gobierno', 453, 0, 2822.48, -2590.11, 0.068, 88.2848, '1', '1', '0', 0, 0, 10),
+(175, 'Gobierno', 453, 0, 2839.15, -2592.76, -0.0994, 264.828, '1', '1', '0', 0, 0, 10),
+(176, 'Gobierno', 453, 0, 2801.81, -2583.29, -0.7696, 181.831, '1', '1', '0', 0, 0, 10),
+(177, 'Gobierno', 466, 5000, 1659.95, -1901.61, 13.2939, 359.81, '18', '1', '1', 0, 0, 0),
+(178, 'Gobierno', 429, 15, -1953.59, 298.972, 35.1484, 142.652, '7', '1', '1', 1, 0, 0),
+(179, 'Gobierno', 517, 6500, 1632.2, -1904.55, 13.4067, 269.611, '1', '3', '1', 0, 0, 0),
+(180, 'Gobierno', 536, 40000, 2119.9, -1144.58, 24.3798, 299.297, '1', '1', '1', 0, 0, 0),
+(181, 'Gobierno', 580, 32000, 2136.3, -1144.72, 24.637, 95.8218, '6', '6', '1', 0, 0, 0),
+(182, 'Gobierno', 598, 0, 283.61, 1429.48, 10.3312, 88.203, '0', '1', '0', 0, 0, 0),
+(183, 'Gobierno', 598, 0, 283.509, 1433.61, 10.3331, 89.0617, '0', '1', '0', 0, 0, 0),
+(184, 'Gobierno', 598, 0, 283.678, 1437.77, 10.3325, 89.1797, '0', '1', '0', 0, 0, 0),
+(185, 'Gobierno', 497, 0, 256.253, 1472.07, 12.8248, 90.0708, '0', '1', '0', 0, 0, 0);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `cantidad_vehiculos`
+--
+ALTER TABLE `cantidad_vehiculos`
+  ADD PRIMARY KEY (`Cantidad`);
+
+--
+-- Indices de la tabla `facciones`
+--
+ALTER TABLE `facciones`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `info`
+--
+ALTER TABLE `info`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `log_baneos`
+--
+ALTER TABLE `log_baneos`
+  ADD PRIMARY KEY (`ID`), ADD KEY `ID` (`ID`);
+
+--
+-- Indices de la tabla `log_ingresos`
+--
+ALTER TABLE `log_ingresos`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `log_nombres`
+--
+ALTER TABLE `log_nombres`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `log_propiedades`
+--
+ALTER TABLE `log_propiedades`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `log_transacciones`
+--
+ALTER TABLE `log_transacciones`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `log_vehiculos`
+--
+ALTER TABLE `log_vehiculos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `log_ventas`
+--
+ALTER TABLE `log_ventas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `prendas`
+--
+ALTER TABLE `prendas`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `propiedades`
+--
+ALTER TABLE `propiedades`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `registros`
+--
+ALTER TABLE `registros`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `vehicles`
+--
+ALTER TABLE `vehicles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `facciones`
+--
+ALTER TABLE `facciones`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `info`
+--
+ALTER TABLE `info`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `log_baneos`
+--
+ALTER TABLE `log_baneos`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `log_ingresos`
+--
+ALTER TABLE `log_ingresos`
+  MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=48344;
+--
+-- AUTO_INCREMENT de la tabla `log_nombres`
+--
+ALTER TABLE `log_nombres`
+  MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `log_propiedades`
+--
+ALTER TABLE `log_propiedades`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `log_transacciones`
+--
+ALTER TABLE `log_transacciones`
+  MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `log_vehiculos`
+--
+ALTER TABLE `log_vehiculos`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `log_ventas`
+--
+ALTER TABLE `log_ventas`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `prendas`
+--
+ALTER TABLE `prendas`
+  MODIFY `ID` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `propiedades`
+--
+ALTER TABLE `propiedades`
+  MODIFY `id` int(5) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT de la tabla `registros`
+--
+ALTER TABLE `registros`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT de la tabla `vehicles`
+--
+ALTER TABLE `vehicles`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=186;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;[01:36:35] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[01:36:37] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[01:36:37] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[01:36:37] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[17:04:26] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[17:04:28] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[17:04:28] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[17:04:28] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[17:07:23] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[17:07:25] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[17:07:25] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[17:08:51] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[17:08:53] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[17:08:53] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[17:35:23] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[17:35:25] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
+[17:35:25] [ERROR] CMySQLConnection::Connect - (error #2003) Can't connect to MySQL server on 'localhost' (10061)
